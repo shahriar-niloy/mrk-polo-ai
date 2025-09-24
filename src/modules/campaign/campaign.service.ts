@@ -5,13 +5,14 @@ import { Campaign, CampaignStatus } from './campaign.entity';
 import { InjectQueue } from '@nestjs/bull';
 import type { Queue } from 'bull';
 import { CreateCampaignDto } from './dto';
+import { CAMPAIGN_STEP_EXECUTION_JOB_NAME, CAMPAIGN_STEP_EXECUTION_QUEUE } from 'src/constants';
 
 @Injectable()
 export class CampaignService {
     constructor(
         @InjectRepository(Campaign)
         private campaignRepository: Repository<Campaign>,
-        @InjectQueue('campaignStepExecutions') private campaignStepExecutionQueue: Queue,
+        @InjectQueue(CAMPAIGN_STEP_EXECUTION_QUEUE) private campaignStepExecutionQueue: Queue,
     ) {
         
     }
@@ -144,7 +145,7 @@ export class CampaignService {
         }
 
         await this.campaignStepExecutionQueue.add(
-            'campaign-step-execution',
+            CAMPAIGN_STEP_EXECUTION_JOB_NAME,
             { campaignId: campaign.id, stepIndex: campaign.stepIndex },
             jobConfig,
         );
