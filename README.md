@@ -36,5 +36,31 @@ Contact [id, name, email, sms]
 ContactListContact [ContactListId, ContactId]
 Campaign [id, name, description, channels, workflow(JSONB), userListId, startDate, endDate, status, stepIndex]
 
+## Features
+* Modules
+* Services
+* Controllers
+* Repository
+* Dependency Injection
+* TypeORM
+* Usage of built in exceptions
+* Request Validation
+* Authentication
+* Global authencation guard for securing private routes
+* Use of custom decorator
+* Config Module
+* DTO pattern
+* Node Bull
+    * Offloading the background job management task
+    * Using retries with backoff
+    * Event Listeners for job to monitor errors
+
+## What would have been nice to cover within the timeframe
+* Not using TypeORM synchronize to migrate database schema. Used for the convience for development. 
+* Uniform response structure
+* Centralized loggin service
+* Custom error handling with exception filters
+* API documentation using Swagger
+* Using docker compose to orchestrate the dependencies together 
 
 
